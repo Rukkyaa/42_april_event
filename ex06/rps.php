@@ -26,7 +26,7 @@
 	while (true) {
 		$computer = $choices[rand(0,2)];
 		while (true) {
-			echo $cyan . "Enter your choice ($yellow 👊 rock$reset, $purple 📄 paper$reset, $red ✂️  scissors$reset): ";
+			echo $cyan . "Enter your choice ($yellow 🪨 rock$reset, $purple 📄 paper$reset, $red ✂️  scissors$reset): ";
 			$user = trim(fgets(STDIN));
 			if (in_array($user, $choices)) {
 				break;
