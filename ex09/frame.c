@@ -8,14 +8,14 @@ int get_max_len(char *str)
     int current_len = 0;
 
     while (*str)
-	{
+    {
         if (*str == ' ') {
             if (current_len > max_len)
                 max_len = current_len;
             current_len = 0;
         }
-		else
-			current_len++;
+        else
+            current_len++;
         str++;
     }
     if (current_len > max_len)
@@ -23,14 +23,41 @@ int get_max_len(char *str)
     return (max_len);
 }
 
-int	main(int argc, char **argv)
+void print_spaces(int n)
 {
-	int	max_len;
+    while (n--)
+        printf(" ");
+}
 
-	if (argc != 2)
-		return (EXIT_FAILURE);
-	max_len = get_max_len(argv[1]);
-	// printf("%d\n", get_max_len(argv[1]));
-	printf("%d\n", get_len(argv[1]+1));
-	printf("%ld\n", strlen(strtok(argv[1]+1, " ")));
+void print_ast(int n)
+{
+    while (n--)
+        printf("*");
+    printf("\n");
+}
+
+int main(int argc, char **argv)
+{
+    int max_len;
+    int current_len;
+    int i;
+    char *str;
+
+    if (argc != 2)
+        return (EXIT_FAILURE);
+    str = strdup(argv[1]);
+    max_len = get_max_len(str);
+    print_ast(max_len + 4);
+    char *token = strtok(str, " ");
+    while (token != NULL)
+    {
+        current_len = strlen(token);
+        printf("* %s", token);
+        print_spaces(max_len - current_len);
+        printf(" *\n");
+        token = strtok(NULL, " ");
+    }
+    print_ast(max_len + 4);
+    free(str);
+    return (EXIT_SUCCESS);
 }
